@@ -1,5 +1,6 @@
 const express = require('express');
 const app = new express();
+require('dotenv').config();
 
 /*This tells the server to use the client 
 folder for all static resources*/
@@ -28,9 +29,9 @@ function getNLUInstance() {
     const naturalLanguageUnderstanding = new NaturalLanguageUnderstandingV1({
         version: '2021-08-01',
         authenticator: new IamAuthenticator ({
-            apikey: api_key
+            apikey: process.env.API_KEY
         }),
-        serviceUrl: api_url
+        serviceUrl: process.env.API_URL
     });
     return naturalLanguageUnderstanding;
 }
